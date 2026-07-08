@@ -1,0 +1,33 @@
+{
+  "psm": {
+    "id": "PED001",
+    "basicType": "aPEDESTRIAN",
+    "position": {
+      "lat": -23.550500,
+      "lon": -46.633320
+    },
+    "speed": 1.42,
+    "heading": 90,
+    "acceleration": {
+      "longitudinal": 0.15,
+      "lateral": -0.03
+    }
+  },
+  "bsm": {
+    "id": "VEH001",
+    "position": {
+      "lat": -23.550460,
+      "lon": -46.633150
+    },
+    "speed": 12.80,
+    "heading": 270,
+    "acceleration": {
+      "longitudinal": -0.80,
+      "lateral": 0.00
+    },
+    "vehicleSize": {
+      "length": 4.45,
+      "width": 1.78
+    }
+  }
+}
