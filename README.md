@@ -64,17 +64,6 @@ A partir desse ponto, foi feito as aplicações. O arquivo "alerta.ino" contém 
 
 Também, para testar a aplicação, foi feito um servidor auxiliar WebSocket. Foi utilizado o [**Render**](https://render.com) para subir o servidor on-line. Ele funciona a partir de um repositório. Assim, é necessário criar um repositório (no GitHub ou similares) contendo os arquivos da pasta Servidor e então, conectar sua conta ao Render para que ele acesse seu repositório.
 
-### Exemplos:
-a)
-  ```
-  Execute o comando X Y Z, no terminal, na pasta do projeto
-  ```
-b)
-  1. Abra a pasta 
-  2. Execute o comando A B C no terminal
-  3. Compile os arquivos X, Y e Z juntos
-  4. Crie um arquivo W.txt de entrada
-
 ## Execução
 Primeiro, vamos colocar no ar o servidor. Na plataforma do Render, adicione um novo serviço Web. Em "Build Command", coloque:
   ```
