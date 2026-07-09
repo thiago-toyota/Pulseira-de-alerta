@@ -25,7 +25,7 @@ Alguns links úteis que foram usados, principalmente em relação ao Arduino:
 Outra dica é, antes de "colocar a mão na massa", passar um bom tempo (talvez a maior parte do tempo) planejando e projetando. Algumas [aplicações Web](https://wokwi.com/projects/new/esp32-c3) simulam os circuitos, permitindo aprender o básico sobre microcontroladores, componentes (como módulos de vibração, LED), conexão WiFi, etc. A partir desse ponto, a evolução natural é comprar um kit breadboard, contendo o breadborad (uma placa de prototipação de circuitos) e jumper cables (fios que permitem facilmente fazer e desfazer conexões entre componentes na placa), além do microcontrolador e talvez alguns componentes básicos, como luzes LED. Um exemplo de site que reune todos esses componentes é o [UsinaInfo](https://www.usinainfo.com.br).
   
 ## Passo a passo
-![Imagem](https://github.com/thiago-toyota/Pulseira-de-alerta/blob/main/Pulseira/Imagens/breadboard.jpeg)
+![Imagem](https://github.com/thiago-toyota/Pulseira-de-alerta/blob/main/Pulseira/Imagens/breadboard.png)
 
 Para dar início ao projeto, foi feito diversos projetos no [WokWi](https://wokwi.com/projects/new/esp32-c3). Quando estava seguro dos componenentes necessários e do mapa do circuito, foi feito a compra de tais eletrônicos e do kit breadboard. A imagem anterior demonstra o projeto do dispositivo: a bateria está soldada no módulo carregador através dos pinos B+ e B-. Tal módulo fornece carga para o esp32 (pino 3,3V e GND) e para o módulo de vibração (VCC e GND). O esp ainda se conecta ao módulo de vibração através do pino GPIO4 (que para o circuito final foi trocado pelo GPIO1).
 
