@@ -3,11 +3,11 @@
 
 WebSocketsClient webSocket;
 
-const char* ssid = "Teste"; 
-const char* password = "teste123";
+const char* ssid = "NOME-DA-REDE-WIFI"; 
+const char* password = "SENHA-DO_WIFI";
 
 // Render ou qualquer outro
-const char* serverHost = "test-dwmi.onrender.com"; 
+const char* serverHost = "MEUSERVIDOR-dwmi.onrender.com"; 
 const int serverPort = 443;
 const char* serverPath = "/";
 
