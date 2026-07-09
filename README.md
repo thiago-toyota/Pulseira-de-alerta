@@ -1,47 +1,68 @@
-Este Readme é um modelo que pode ser usado para os repositórios no GitHub de projetos feitos para a atividade de Extensão Hackerspace, da Universidade Federal de São Carlos - Campus Sorocaba, organizada pelo hackerspace [HackoonSpace](https://hackoonspace.com/). É importante observar que alguns campos e informações são opcionais, e que não é necessário seguir rigorosametne o modelo proposto. O objetivo é que, obrigatóriamente, os grupos coloquem em seus repositórios as informações requisitadas aqui, porém o formato em si pode ou não seguir o modelo.
-
-Além disso, para cada tópico, existem alguns possíveis exemplos de como o grupo pode apresentar as informações sobre o projeto (ex: lista enumerada, texto descritivo, etc). Alguns tópicos possuem comandos que só podem ser melhor visualizados na versão Raw ou txt do Readme.
-
-É preferível que a linguagem da documentação esteja em português, mas também é aceito que esteja em inglês.
-
-Para responder quaisquer dúvidas, entrar em contato com a equipe do HackoonSpace.
-
-# Titulo do projeto
+# Pulseira de Alerta
 
 ## Conceito do projeto
-Aqui vocês definem o conceito do projeto, explicando sucintamente sobre o que ele se trata, qual a finalidade/utilidade, etc. 1-2 parágrafos já são suficientes, desde que bem explicados, mas sintam-se a vontade para escrever mais. Também sintam-se a vontade para usar a criatividade.
 
-### Exemplo:
+O projeto consiste em uma **pulseira de alerta com feedback háptico** para auxílio em locomoção urbana de pedestres e outros usuários vulneráveis da via (como ciclistas e motociclistas). Através do recebimento de um alerta de perigo do servidor (como veículos se aproximando ou desvios inesperados), a pulseira vibra em um padrão de duração e intensidade únicos, näo apenas notificando o usuário de que ele deve entrar em estado de alerta mas também fomentando maior memória cognitiva/associativa entre vibração e perigo. 
 
-Este projeto foi desenvolvido com o intuíto de facilitar a manuntenção de aplicações Web contra invasões indesejadas do tipo XYZ. Para isto, foi implementado um programa que realizasse a checagem de pacotes recebidos por um Website com host local em uma máquina com Windows, buscando traços de possíveis códigos maliciosos que possam interferir na execução habitual do servidor da aplicação.
+Apesar da **contribuição principal do projeto ser o dispositivo vestível**, a fim de testar o funcionamento da pulseira foi implementado um **servidor websocket** simples para o envio dos alertas. O projeto não é restrito a essa escolha de protocolo de comunicação: poderia ter sido feito em TCP por exemplo. O importante é o fluxo de informação, e não a tecnologia. Também, foi construído a pulseira inteligente utilizando componenetes eletrônicos e o reaproveitamento de algumas peças para se fazer a estrutura do vestível, bem como a implementação da **aplicação de alertas** no microcontrolador do dispositivo. 
   
 ## Pré-requisitos e recursos utilizados
-Citação das linguagens, bibliotecas, peças de hardware, e outras coisas que o grupo utilizou para realizar o projeto. Não é necessário explicar qual foi o uso exato de cada coisa no projeto. Bibliotecas e recursos padrões das tecnologias utilizadas não precisam ser citados (ex: stdio.h, iostream.h, etc.).
+Para a construção do circuito do vestível, utilizou-se o microcontrolador **ESP32 C3 Super Mini**, o módulo de vibração **Vibracall MV50**, o módulo carregador **TP4056** e uma **bateria LiPo** 3,7V de 500mAh. A soldagem foi feita com estanho utilizando fios Ethernet. 
 
-Se alguma biblioteca externa ou código de outra pessoa foi utilizado como recurso, é importante citar a fonte de onde vocês retiraram (pode ser o link no Github, ou tutorial usado como referência).
+Para a construção da estrutura da pulseira, utilizou-se uma fita velcro e uma carcaça de um sensor de movimento. 
 
-### Exemplo:
+Para a aplicação de alertas da pulseira, foi utilizado a linguagem C++/Arduino. Como bibliotecas, foi utilizado:
+1. **WiFi.h**: para conectar o microcontrolador à rede/
+2. **WebSocketsClient**: para estabelecer a conexão com o servidor. Faz parte da biblioteca WebSockets, de [Markus Sattler](https://www.arduinolibraries.info/libraries/web-sockets)
 
-O grupo utilizou a linguagem C para desenvolver a implementação geral do projeto, além de importar as seguintes bibliotecas:
-1. abcdzd.h
-2. exemplo.h, disponível em [IstoEhApenasUmExemplo](https://github.com/istoehapenasumexemplo/minhabiblioteca)
+Para a aplicação do servidor, foi utilizado a linguagem Python. Como bibliotecas, foi utilizado:
+1. **websockets**: para implementar o protocolo de comunicação do servidor, WebSocket.
 
-Também foi utilizado o tutorial disponível em [IstoEhOutroExemplo](https://github.com/istoehoutroexemplo/oi) como base para o grupo compreender a implementação da função X dentro da linguagem em questão.
+Alguns links úteis que foram usados, principalmente em relação ao Arduino:
+1. [**Tutorial de primeiros passos com o ESP32 C3**](https://randomnerdtutorials.com/getting-started-esp32-c3-super-mini/).
+2. [**Repositório da biblioteca WebSocketsClient**](https://github.com/Links2004/arduinoWebSockets/tree/master).
+
+Outra dica é, antes de "colocar a mão na massa", passar um bom tempo (talvez a maior parte do tempo) planejando e projetando. Algumas [aplicações Web](https://wokwi.com/projects/new/esp32-c3) simulam os circuitos, permitindo aprender o básico sobre microcontroladores, componentes (como módulos de vibração, LED), conexão WiFi, etc. A partir desse ponto, a evolução natural é comprar um kit breadboard, contendo o breadborad (uma placa de prototipação de circuitos) e jumper cables (fios que permitem facilmente fazer e desfazer conexões entre componentes na placa), além do microcontrolador e talvez alguns componentes básicos, como luzes LED. Um exemplo de site que reune todos esses componentes é o [UsinaInfo](https://www.usinainfo.com.br).
   
 ## Passo a passo
-Passos que o grupo realizou para criar, implementar ou projetar o projeto. É importante descrever pelo menos o mais importante para que outras pessoas compreendam como o grupo conseguiu realizar o projeto, quais as atividades feitas, etc, e possam ter meios compreender como reproduzir o projeto, se assim fosse necessário.
+![Imagem](https://github.com/thiago-toyota/Pulseira-de-alerta/blob/main/Pulseira/Imagens/breadboard.jpeg)
 
-Se possível, é legal citar o nome dos arquivos implementados, se forem poucos. Por exemplo, se o seu projeto tiver 4 arquivos, cada um com uma função, citar o nome deles na parte do passo a passo correspondente. Se forem muitos arquivos para uma mesma coisa, não tem problema, podem deixar sem ou deixar apenas o nome da pasta.
+Para dar início ao projeto, foi feito diversos projetos no [WokWi](https://wokwi.com/projects/new/esp32-c3). Quando estava seguro dos componenentes necessários e do mapa do circuito, foi feito a compra de tais eletrônicos e do kit breadboard. A imagem anterior demonstra o projeto do dispositivo: a bateria está soldada no módulo carregador através dos pinos B+ e B-. Tal módulo fornece carga para o esp32 (pino 3,3V e GND) e para o módulo de vibração (VCC e GND). O esp ainda se conecta ao módulo de vibração através do pino GPIO4 (que para o circuito final foi trocado pelo GPIO1).
 
-### Exemplo:
+Após essa primeira validação, as conexões foram efetivamente soldadas. A imagem a seguir mostra o resultado final
 
-1. Baixamos o material disponível em [Material](https://materialdeexemplodohackerspace.com.br)
-2. Estudamos como o código do material anterior funciona
-3. Implementamos um programa que se comunicasse com o código compreendido (comunicacao.c e comunicacao.h)
-4. Implementamos uma interface gráfica para utilizar o programa de comunicação de forma mais intuitiva.
+![Imagem](https://github.com/thiago-toyota/Pulseira-de-alerta/blob/main/Pulseira/Imagens/pulseira.png)
+
+Da imagem:
+
+(a). Estrutura da pulseira
+
+(b). Microcontrolador Esp32 C3 Super Mini
+
+(c). Módulo de vibração Vibracall MV50
+
+(d). Módulo carregador TP4056
+
+(e). Bateria LiPo 500mAh
+
+A seguir, o esquema de conexões final:
+
+| Origem | Destino |
+|--------|---------|
+| Bateria LiPo fio vermelho (+) | TP4056 B+ |
+| Bateria LiPo fio preto (-) | TP4056 B- |
+| TP4056 OUT+ | ESP32 3,3V |
+| TP4056 OUT+ | MV50 VCC |
+| TP4056 OUT- | ESP32 GND |
+| TP4056 OUT- | MV50 GND |
+| ESP32 GPIO1 | MV50 IN |
+
+A partir desse ponto, foi feito as aplicações. O arquivo "alerta.ino" contém o código da aplicação Arduino de alertas, e o "websocket.py" o servidor. O arquivo "payload.json" possui um pacote que simula uma mensagem de risco que o servidor envia à aplicação.
 
 ## Instalação
-Passos necessários para instalar ou recriar seu projeto, se assim for necessário. A descrição dos passos não precisa ser complexa. É necessário apenas o mais importante para que outras pessoas saibam como fazê-lo.
+É necessário instalar o Arduino Studio para rodar a aplicação "alerta.ino" no esp32. O [**tutorial de primeiros passos com o ESP32 C3**](https://randomnerdtutorials.com/getting-started-esp32-c3-super-mini/) auxilia bastante nessa parte. Recomendo fortemente seguir ele.
+
+Também, para testar a aplicação, foi feito um servidor auxiliar WebSocket. Foi utilizado o [**Render**](https://render.com) para subir o servidor on-line. Ele funciona a partir de um repositório. Assim, é necessário criar um repositório (no GitHub ou similares) contendo os arquivos da pasta Servidor e então, conectar sua conta ao Render para que ele acesse seu repositório.
 
 ### Exemplos:
 a)
@@ -55,31 +76,35 @@ b)
   4. Crie um arquivo W.txt de entrada
 
 ## Execução
-Passos necessários para executar, rodar ou testar seu projeto. Vocês podem seguir o mesmo modelo dos exemplos de Instalação.
+Primeiro, vamos colocar no ar o servidor. Na plataforma do Render, adicione um novo serviço Web. Em "Build Command", coloque:
+  ```
+  pip install -r requirements.txt
+  ```
+E em "Start Command", coloque:
+ ```
+  py websocket.py
+  ```
+Após isso, clique em "Start Web Service". Agora o servidor está no ar.
+
+Vamos pegar o URL que o Render gerou para o servidor. Vá para seu projeto (My Project, provavelmente) e no serviço que acabamos de criar. Abaixo do seu username do GitHub, aparecerá o URL. Copie tudo que vier APÓS "https://".
+
+Com o Arduino Studio, abra o arquivo "alerta.ino". Troque "ssid" e "password" para as credenciais da sua rede WiFi e o "serverHost" para o que você copiou do Render.
+
+Agora o que falta é apenas instalar a aplicação no esp32. Novamente, é recomendado seguir o [**tutorial de primeiros passos com o ESP32 C3**](https://randomnerdtutorials.com/getting-started-esp32-c3-super-mini/). 
+Abaixo, dou uma explicação rápida da instalação
+
+Clique em Tools > Board > Board Manager. Procure por **esp32**, e instale o "esp32 by Espressif Systems". 
+
+Após a instalação, vá em Tools > USB CDC on Boot e ative-o. Vá em Tools > Upload Speed e escolha "115200".
+
+Para mostrar o terminal e os "logs", vá em Tool > Serial Monitor. Em Serial Monitor, certifique-se de que a velocidade está em 115200 baud.
+
+Após isso, conecte via usb o microcontrolador no computador e selecione a placa (esp32 c3) e a porta (entrada USB). Para instalar a aplicação, clique em "Upload". Se tudo der certo, o circuito vibrará por 2,5 segundos após o recebimento do pacote do servidor, como visto na figura abaixo.
+
+![Imagem](https://github.com/thiago-toyota/Pulseira-de-alerta/blob/main/Pulseira/Imagens/funcionamento.png)
 
 ## Bugs/problemas conhecidos
-Lista de possíveis problemas, bugs, falhas ou comportamentos esquisitos que o grupo conheça sobre o projeto. Esta seção é importante para que outras pessoas saibam quais tipos de erros elas podem encontrar. Seria legal citar motivos que o grupo acredita que sejam os causadores destas coisas, mas não é obrigatório.
+Às vezes, após a instalação da aplicação no microcontrolador, nada aparece no serial monitor, indicando que a instalação não foi bem sucedida mesmo que, pelo terminal Output, nenhum problema ocorreu. Para resolver, aperte o botão RESET no ESP. A placa possui 2 botões, RESET e BOOT. O RESET fica localizado do lado dos pinos de alimentação (3,3V e GND).
 
-### Exemplo:
-
-O projeto possui uma falha ao abrir a aba INICIO, após realizar uma inserção com caractéres acentuados. Também foi encontrada uma falha ao definir a tela de fundo com a cor Roxa, provavelmente por conta da palheta de cores limitada da tecnologia que foi utilizada.
-
-## Autores
-Aqui, é importante referenciar o nome dos integrantes do grupo. Não precisa de RA. Outras informações, como contato ou perfil no Github, ficam a critério do grupo. Se o grupo for muito grande, é bom referenciar as funções de cada um.
-
-### Exemplo:
-* Marcus Vinícius N. Garcia ([Infinitemarcus](https://github.com/Infinitemarcus))
-* Garcia Neto Junior da Silva
-* João das Neves - Desenvolvedor do Back-End
-
-## Demais anotações e referências (opcional)
-Aqui, o grupo pode colocar quaisquer outras informações que ache relevante, se assim desejar. Links de referências e materiais de estudo utilizados ou recomendados são sempre bem vindos. 
-
-## Imagens/screenshots
-É necessário colocar pelo menos 3 imagens/screenshots do projeto, porém fiquem a vontade para colocar mais, a medida do que vocês acharem legal para ilustrar o projeto.
-
-Para colocar imagens no Readme do Github, vocês podem usar o seguinte comando (abrir este Readme no modo raw ou como txt):
-
-![Imagem](https://github.com/hackoonspace/Hackoonspace-template/blob/master/exemplo.png)
-
-É preferível que vocês usem imagens hospedadas no próprio GitHub do projeto. É só referenciar o link delas no comando acima.
+## Autor
+Thiago Massayuki Toyota - thiago.toyota@estudante.ufscar.br
