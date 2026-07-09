@@ -12,8 +12,8 @@ Para a construção do circuito do vestível, utilizou-se o microcontrolador **E
 Para a construção da estrutura da pulseira, utilizou-se uma fita velcro e uma carcaça de um sensor de movimento. 
 
 Para a aplicação de alertas da pulseira, foi utilizado a linguagem C++/Arduino. Como bibliotecas, foi utilizado:
-1. **WiFi.h**: para conectar o microcontrolador à rede/
-2. **WebSocketsClient**: para estabelecer a conexão com o servidor. Faz parte da biblioteca WebSockets, de [Markus Sattler](https://www.arduinolibraries.info/libraries/web-sockets)
+1. **WiFi.h**: para conectar o microcontrolador à rede.
+2. **WebSocketsClient**: para estabelecer a conexão com o servidor. Faz parte da biblioteca WebSockets, de [Markus Sattler](https://www.arduinolibraries.info/libraries/web-sockets).
 
 Para a aplicação do servidor, foi utilizado a linguagem Python. Como bibliotecas, foi utilizado:
 1. **websockets**: para implementar o protocolo de comunicação do servidor, WebSocket.
